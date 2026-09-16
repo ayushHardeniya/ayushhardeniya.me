@@ -1,0 +1,9 @@
+.astro/
+dist/
+node_modules/
+.env
+.DS_Store
+generate_*.py
+Generate-*.py
+*.pyc
+__pycache__/
