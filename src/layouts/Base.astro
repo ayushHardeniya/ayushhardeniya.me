@@ -1,0 +1,312 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "Ayush Hardeniya",
+  description = "Systems, Backend, Infra Engineer from India. Debian contributor, ZenYukti founder. Building Linux tools in Go and Python.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="author" content="Ayush Hardeniya" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <style is:global>
+      :root {
+        --bg: #0a0a0a;
+        --fg: #e6e6e6;
+        --muted: #9a9a9a;
+        --muted2: #6a6a6a;
+        --border: #1e1e1e;
+        --green: #00ff88;
+        --max: 800px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scrollbar-gutter: stable;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family:
+          ui-monospace, SFMono-Regular, Menlo, Monaco, "JetBrains Mono",
+          monospace;
+        font-size: 15px;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: #8effbe;
+        text-decoration: underline;
+        text-decoration-color: #2a2a2a;
+        text-underline-offset: 3px;
+      }
+      a:visited {
+        color: #8effbe;
+      }
+      a:hover {
+        color: #00ff88;
+        text-decoration-color: rgba(0, 255, 136, 0.5);
+      }
+      .wrap {
+        max-width: var(--max);
+        width: 92vw;
+        margin: 0 auto;
+        padding: 48px 20px 64px;
+      }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        padding-bottom: 16px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--border);
+        flex-wrap: wrap;
+      }
+      .brand {
+        line-height: 1.3;
+      }
+      .brand b {
+        font-weight: 600;
+      }
+      .brand small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 2px;
+      }
+      nav {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 14px;
+      }
+      nav a,
+      nav a:link,
+      nav a:visited {
+        color: var(--fg);
+        text-decoration: none;
+      }
+      nav a:hover {
+        color: var(--fg);
+        text-decoration: underline;
+        text-decoration-color: var(--border);
+        text-underline-offset: 4px;
+      }
+      nav a[aria-current] {
+        color: var(--green);
+        text-decoration: underline;
+        text-decoration-color: var(--green);
+        text-underline-offset: 6px;
+      }
+      .hero-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 28px;
+      }
+
+      .hero-text {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hero-avatar {
+        height: 135px;
+        width: auto;
+        flex: 0 0 auto;
+        object-fit: cover;
+        border: 1px solid var(--border);
+        filter: grayscale(100%);
+        display: block;
+      }
+
+      @media (max-width: 700px) {
+        .hero-wrap {
+          display: block;
+        }
+
+        .hero-avatar {
+          margin-top: 20px;
+        }
+      }
+      h1 {
+        font-size: 28px;
+        line-height: 1.2;
+        font-weight: 700;
+        margin: 0 0 16px;
+        letter-spacing: -0.02em;
+      }
+      h2 {
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin: 0 0 14px;
+        font-weight: 600;
+      }
+      p {
+        margin: 0 0 16px;
+        max-width: 100%;
+      }
+      .small {
+        font-size: 13.5px;
+        color: #b3b3b3;
+        line-height: 1.7;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      .stack {
+        display: block;
+        margin-top: 5px;
+        font-size: 12px;
+        color: var(--muted2);
+        letter-spacing: 0.01em;
+      }
+      .section {
+        margin-top: 36px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        max-width: 100%;
+      }
+      .section.first {
+        margin-top: 32px;
+        padding-top: 0;
+        border-top: 0;
+      }
+      ul {
+        margin: 0 0 16px;
+        padding-left: 18px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      li::marker {
+        color: var(--muted2);
+      }
+      code {
+        font-size: 13px;
+        background: #121212;
+        padding: 2px 5px;
+        border: 1px solid var(--border);
+      }
+      .div {
+        height: 1px;
+        background: var(--border);
+        margin: 24px 0;
+      }
+      .links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        font-size: 14px;
+        margin-top: 8px;
+      }
+      .links span {
+        color: var(--muted2);
+      }
+      footer {
+        margin-top: 64px;
+        padding-top: 16px;
+        border-top: 1px solid var(--border);
+        font-size: 11px;
+        color: var(--muted);
+      }
+      footer .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        line-height: 1.8;
+      }
+      footer a {
+        color: var(--muted);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      footer a:hover {
+        color: var(--fg);
+      }
+      .comment {
+        color: var(--muted2);
+        line-height: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <b>ayushhardeniya.me</b>
+          <small>systems / linux / infra</small>
+        </div>
+        <nav>
+          <a
+            href="/"
+            aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+          >
+            [home]
+          </a>
+          <a
+            href="/work"
+            aria-current={Astro.url.pathname === "/work" ? "page" : undefined}
+          >
+            [work]
+          </a>
+          <a
+            href="/blog"
+            aria-current={
+              Astro.url.pathname.startsWith("/blog") ? "page" : undefined
+            }
+          >
+            [blog]
+          </a>
+          <a
+            href="/now"
+            aria-current={Astro.url.pathname === "/now" ? "page" : undefined}
+          >
+            [now]
+          </a>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer>
+        <div class="row">
+          <span>html/css only · loads in &lt;50ms</span>
+          <span>
+            <a href="https://github.com/ayushHardeniya/ayushhardeniya.github.io">
+              source
+            </a>{" "}
+            · <a href="/rss.xml">rss</a>
+          </span>
+        </div>
+        <div class="row">
+          <span>© 2026 Ayush Hardeniya</span>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
+
+
+
+
+
