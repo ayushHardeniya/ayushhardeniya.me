@@ -1,0 +1,1 @@
+Here we store assets and images for the content we publish including blogs.
