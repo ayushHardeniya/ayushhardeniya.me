@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base
+  title="Blog — Ayush Hardeniya"
+  description="Blog by Ayush Hardeniya — systems, Linux, Go, Debian."
+>
+  <h1>blog</h1>
+  <p class="small">
+    i write about linux, go, and what i learn building systems.
+  </p>
+
+  <ul style="list-style:none;padding:0">
+    {posts.map((p) => {
+      const cleanSlug = p.slug.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+      const date = p.data.date.toISOString().slice(0, 10);
+      return (
+        <li style="margin:0.8em 0">
+          <span style="color:var(--muted)">{date}</span> —{" "}
+          <a href={`/blog/${cleanSlug}`}>{p.data.title}</a>
+        </li>
+      );
+    })}
+  </ul>
+</Base>
+
