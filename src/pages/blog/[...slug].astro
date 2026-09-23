@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => {
+    const cleanSlug = post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, "");
+    return { params: { slug: cleanSlug }, props: { post } };
+  });
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const words = post.body.split(/\s+/).length;
+const readTime = Math.max(1, Math.ceil(words / 200));
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <div style="margin-bottom:2.5rem">
+    <h1 style="color:var(--green,#33ff33);margin:0 0 8px 0;text-transform:lowercase;font-size:1.8rem">
+      {post.data.title}
+    </h1>
+    <p style="color:var(--muted,#777);font-size:13px;margin:0">
+      {post.data.date.toISOString().slice(0, 10)} · {readTime} min read
+    </p>
+  </div>
+
+  <article class="blog-content">
+    <Content />
+  </article>
+</Base>
+
+<style>
+  .blog-content {
+    max-width: 800px; /* FIX: uses full right space, was 65ch */
+    width: 100%;
+    line-height: 1.8;
+    color: #ccc;
+  }
+  .blog-content :global(h2) {
+    color: var(--green, #33ff33);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-transform: lowercase;
+    margin-top: 2.5em;
+    margin-bottom: 0.6em;
+  }
+  .blog-content :global(h3) {
+    color: var(--green, #33ff33);
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: lowercase;
+    margin-top: 2em;
+  }
+  .blog-content :global(p) {
+    margin: 1.2em 0;
+    max-width: 100%;
+  }
+</style>
+
