@@ -12,7 +12,7 @@ export async function GET(context) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
-      link: `/blog/${post.slug}/`,
+      link: `/blog/${post.slug.replace(/^\d{4}-\d{2}-\d{2}-/, '')}/`,
     })),
   });
 }
