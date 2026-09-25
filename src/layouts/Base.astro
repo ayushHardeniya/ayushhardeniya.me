@@ -239,13 +239,32 @@ const {
         color: var(--muted);
         text-decoration: underline;
         text-underline-offset: 3px;
+        transition: color 0.15s ease;
+      }
+      footer a:visited {
+        color: var(--muted);
       }
       footer a:hover {
-        color: var(--fg);
+        color: #00ff88;
+      }
+      footer a:active {
+        color: #00ff88;
+      }
+      footer a:focus {
+        color: var(--muted);
       }
       .comment {
         color: var(--muted2);
         line-height: 0.8;
+      }
+      /* signature for who-am-i blog */
+      .signature {
+        margin-top: 40px;
+        text-align: right;
+        font-family: "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
+        font-size: 20px;
+        color: var(--muted);
+        transform: rotate(-3deg);
       }
     </style>
   </head>
@@ -290,11 +309,9 @@ const {
       </main>
       <footer>
         <div class="row">
-          <span>html/css only · loads in &lt;50ms</span>
+          <span>astro → static html/css · loads in &lt;50ms</span>
           <span>
-            <a href="https://github.com/ayushHardeniya/ayushhardeniya.github.io">
-              source
-            </a>{" "}
+            <a href="https://github.com/ayushHardeniya/ayushhardeniya.me">source</a>
             · <a href="/rss.xml">rss</a>
           </span>
         </div>
