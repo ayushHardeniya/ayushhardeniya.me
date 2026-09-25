@@ -10,6 +10,8 @@ const {
   description = "Systems, Backend, Infra Engineer from India. Debian contributor, ZenYukti founder. Building Linux tools in Go and Python.",
   image = "/og.png",
 } = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 ---
 
 <!doctype html>
@@ -126,9 +128,9 @@ const {
         text-decoration: none;
       }
       nav a:hover {
-        color: var(--fg);
+        color: var(--green);
         text-decoration: underline;
-        text-decoration-color: var(--border);
+        text-decoration-color: var(--green);
         text-underline-offset: 4px;
       }
       nav a[aria-current] {
@@ -299,27 +301,30 @@ const {
         <nav>
           <a
             href="/"
-            aria-current={Astro.url.pathname === "/" ? "page" : undefined}
+            aria-current={pathname === "/" ? "page" : undefined}
           >
             [home]
           </a>
+
           <a
             href="/work"
-            aria-current={Astro.url.pathname === "/work" ? "page" : undefined}
+            aria-current={pathname === "/work" ? "page" : undefined}
           >
             [work]
           </a>
+
           <a
             href="/blog"
             aria-current={
-              Astro.url.pathname.startsWith("/blog") ? "page" : undefined
+              pathname.startsWith("/blog") ? "page" : undefined
             }
           >
             [blog]
           </a>
+
           <a
             href="/now"
-            aria-current={Astro.url.pathname === "/now" ? "page" : undefined}
+            aria-current={pathname === "/now" ? "page" : undefined}
           >
             [now]
           </a>
