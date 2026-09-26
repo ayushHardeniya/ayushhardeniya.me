@@ -276,6 +276,31 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
       footer a:focus {
         color: var(--muted);
       }
+      /* mobile only - desktop untouched */
+      .footer-top .left .l2 { display: inline; }
+      @media (max-width: 640px) {
+        footer .footer-top {
+          display: flex !important;
+          justify-content: space-between !important;
+          align-items: flex-start !important;
+          gap: 12px;
+        }
+        .footer-top .left {
+          flex: 1 1 auto;
+          min-width: 0;
+          line-height: 1.6;
+        }
+        .footer-top .left .l1 { display: block; white-space: nowrap; }
+        .footer-top .left .l2 { display: block; } /* forces 2nd line on mobile */
+        .footer-top .left .dot { display: none; } /* <-- removes · on mobile only */
+        .footer-top .right {
+          flex: 0 0 auto;
+          white-space: nowrap !important;
+          display: flex !important;
+          gap: 8px;
+          align-items: center;
+        }
+      }
       .comment {
         color: var(--muted2);
         line-height: 0.8;
@@ -334,11 +359,13 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
         <slot />
       </main>
       <footer>
-        <div class="row">
-          <span>astro → static html/css · loads in &lt;50ms</span>
-          <span>
-            <a href="https://github.com/ayushHardeniya/ayushhardeniya.me">source</a>
-            · <a href="/rss.xml">rss</a>
+        <div class="row footer-top">
+          <span class="left">
+            <span class="l1">astro → static html/css</span>
+            <span class="dot">· </span><span class="l2">loads in &lt;50ms</span>
+          </span>
+          <span class="right">
+            <a href="https://github.com/ayushHardeniya/ayushhardeniya.me">source</a> · <a href="/rss.xml">rss</a>
           </span>
         </div>
         <div class="row">
@@ -348,8 +375,3 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
     </div>
   </body>
 </html>
-
-
-
-
-
