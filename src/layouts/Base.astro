@@ -301,9 +301,16 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           align-items: center;
         }
       }
+      /* now page */
       .comment {
         color: var(--muted2);
-        line-height: 0.8;
+        line-height: 1.5;
+      }
+      @media (max-width: 640px) {
+        .comment {
+          line-height: 1.6;
+          word-break: break-word;
+        }
       }
       /* signature for who-am-i blog */
       .signature {
