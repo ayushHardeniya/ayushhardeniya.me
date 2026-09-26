@@ -32,7 +32,7 @@ npm run preview
 
 found a bug, broken link, or something that doesn't work as expected?
 
-feel free to [open an issue here](https://github.com/ayushHardeniya/ayushhardeniya.me/issues).
+feel free to [open an issue here](https://github.com/ayushHardeniya/ayushhardeniya.me/issues/new?template=bug_report.md).
 
 ---
 
