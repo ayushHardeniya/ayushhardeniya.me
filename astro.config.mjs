@@ -8,5 +8,6 @@ export default defineConfig({
   build: { inlineStylesheets: 'never' },
   redirects: {
     '/about': '/blog/who-am-i',
+    '/portfolio': '/',
   },
 });
