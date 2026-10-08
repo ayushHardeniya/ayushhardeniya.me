@@ -277,7 +277,9 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
         color: var(--muted);
       }
       /* mobile only - desktop untouched */
-      .footer-top .left .l2 { display: inline; }
+      .footer-top .left .l2 {
+        display: inline;
+      }
       @media (max-width: 640px) {
         footer .footer-top {
           display: flex !important;
@@ -290,9 +292,16 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           min-width: 0;
           line-height: 1.6;
         }
-        .footer-top .left .l1 { display: block; white-space: nowrap; }
-        .footer-top .left .l2 { display: block; } /* forces 2nd line on mobile */
-        .footer-top .left .dot { display: none; } /* <-- removes · on mobile only */
+        .footer-top .left .l1 {
+          display: block;
+          white-space: nowrap;
+        }
+        .footer-top .left .l2 {
+          display: block;
+        } /* forces 2nd line on mobile */
+        .footer-top .left .dot {
+          display: none;
+        } /* <-- removes · on mobile only */
         .footer-top .right {
           flex: 0 0 auto;
           white-space: nowrap !important;
@@ -412,10 +421,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           <small>systems / linux / infra</small>
         </div>
         <nav>
-          <a
-            href="/"
-            aria-current={pathname === "/" ? "page" : undefined}
-          >
+          <a href="/" aria-current={pathname === "/" ? "page" : undefined}>
             [home]
           </a>
 
@@ -428,9 +434,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 
           <a
             href="/blog"
-            aria-current={
-              pathname.startsWith("/blog") ? "page" : undefined
-            }
+            aria-current={pathname.startsWith("/blog") ? "page" : undefined}
           >
             [blog]
           </a>
@@ -450,10 +454,14 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
         <div class="row footer-top">
           <span class="left">
             <span class="l1">astro → static html/css</span>
-            <span class="dot">· </span><span class="l2">loads in &lt;50ms</span>
+            <span class="dot">· </span>
+            <span class="l2">loads in &lt;50ms</span>
           </span>
           <span class="right">
-            <a href="https://github.com/ayushHardeniya/ayushhardeniya.me">source</a> · <a href="/rss.xml">rss</a>
+            <a href="https://github.com/ayushHardeniya/ayushhardeniya.me">
+              source
+            </a>{" "}
+            · <a href="/rss.xml">rss</a>
           </span>
         </div>
         <div class="row">
