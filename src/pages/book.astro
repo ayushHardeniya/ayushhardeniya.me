@@ -1,3 +1,4 @@
+
 ---
 import Base from "../layouts/Base.astro";
 ---
@@ -6,45 +7,51 @@ import Base from "../layouts/Base.astro";
   title="Book a call | Ayush Hardeniya"
   description="Book a call with Ayush Hardeniya."
 >
-  <h1>book a call!</h1>
+  <h1>book a call</h1>
 
   <p>
-    Hiring, a collab, an idea, or something you want built. Pick a length, then
-    a time that suits you.
+    Want to talk about a role, collaborate on something, or discuss an idea?
+    Pick a time that works for you.
   </p>
 
   <div class="booking">
-    <div class="booking-tabs" role="tablist">
+    <div class="booking-tabs" role="tablist" aria-label="Call duration">
       <button
         class="booking-tab active"
         data-event="15min"
+        id="tab-15min"
         role="tab"
         aria-selected="true"
+        aria-controls="calendar-15min"
       >
-        Quick Call
+        15 min
       </button>
 
       <button
         class="booking-tab"
         data-event="30min"
+        id="tab-30min"
         role="tab"
         aria-selected="false"
+        aria-controls="calendar-30min"
       >
-        Need more time
+        30 min
       </button>
     </div>
 
-    <div class="calendar-frame active" data-calendar="15min">
-      <div class="calendar-placeholder">
-        <span>calendar unavailable</span>
-        <small>check your connection or open it on cal.com</small>
-      </div>
-      <!-- Cal inline embed code begins (15 min) -->
+    <div
+      class="calendar-frame active"
+      data-calendar="15min"
+      id="calendar-15min"
+      role="tabpanel"
+      aria-labelledby="tab-15min"
+    >
       <div
         style="width:100%;height:100%;overflow:hidden"
         id="my-cal-inline-15min"
       ></div>
-      <script type="text/javascript">
+
+      <script>
         (function (C, A, L) {
           let p = function (a, ar) {
             a.q.push(ar);
@@ -77,13 +84,17 @@ import Base from "../layouts/Base.astro";
               p(cal, ar);
             };
         })(window, "https://app.cal.com/embed/embed.js", "init");
+
         Cal("init", "15min", { origin: "https://app.cal.com" });
         Cal.config = Cal.config || {};
         Cal.config.forwardQueryParams = true;
 
         Cal.ns["15min"]("inline", {
           elementOrSelector: "#my-cal-inline-15min",
-          config: { layout: "month_view", useSlotsViewOnSmallScreen: "true" },
+          config: {
+            layout: "month_view",
+            useSlotsViewOnSmallScreen: "true",
+          },
           calLink: "ayushhardeniya/15min",
         });
 
@@ -92,8 +103,9 @@ import Base from "../layouts/Base.astro";
           layout: "month_view",
         });
       </script>
+
       <p class="booking-fallback">
-        Calendar not loading?{" "}
+        Calendar not loading?
         <a
           href="https://cal.com/ayushhardeniya/15min"
           target="_blank"
@@ -102,20 +114,22 @@ import Base from "../layouts/Base.astro";
           Open it on cal.com.
         </a>
       </p>
-      <!-- Cal inline embed code ends -->
     </div>
 
-    <div class="calendar-frame" data-calendar="30min" hidden>
-      <!-- Cal inline embed code begins (30 min) -->
-      <div class="calendar-placeholder">
-        <span>calendar unavailable</span>
-        <small>check your connection or open it on cal.com</small>
-      </div>
+    <div
+      class="calendar-frame"
+      data-calendar="30min"
+      id="calendar-30min"
+      role="tabpanel"
+      aria-labelledby="tab-30min"
+      hidden
+    >
       <div
         style="width:100%;height:100%;overflow:hidden"
         id="my-cal-inline-30min"
       ></div>
-      <script type="text/javascript">
+
+      <script>
         (function (C, A, L) {
           let p = function (a, ar) {
             a.q.push(ar);
@@ -148,6 +162,7 @@ import Base from "../layouts/Base.astro";
               p(cal, ar);
             };
         })(window, "https://app.cal.com/embed/embed.js", "init");
+
         Cal("init", "30min", { origin: "https://app.cal.com" });
         Cal.config = Cal.config || {};
         Cal.config.forwardQueryParams = true;
@@ -168,8 +183,9 @@ import Base from "../layouts/Base.astro";
           layout: "month_view",
         });
       </script>
+
       <p class="booking-fallback">
-        Calendar not loading?{" "}
+        Calendar not loading?
         <a
           href="https://cal.com/ayushhardeniya/30min"
           target="_blank"
@@ -178,7 +194,6 @@ import Base from "../layouts/Base.astro";
           Open it on cal.com.
         </a>
       </p>
-      <!-- Cal inline embed code ends -->
     </div>
   </div>
 </Base>
@@ -198,16 +213,18 @@ import Base from "../layouts/Base.astro";
       });
 
       calendars.forEach((calendar) => {
-        const active = calendar.dataset.calendar === event;
-        calendar.hidden = !active;
+        calendar.hidden = calendar.dataset.calendar !== event;
       });
     });
   });
+
   setTimeout(() => {
     document
       .querySelectorAll<HTMLElement>(".calendar-frame")
       .forEach((frame) => {
-        const calendar = frame.querySelector('div[id^="my-cal-inline"]');
+        const calendar = frame.querySelector<HTMLDivElement>(
+          'div[id^="my-cal-inline"]',
+        );
 
         if (calendar && !calendar.querySelector("iframe")) {
           frame.classList.add("unavailable");

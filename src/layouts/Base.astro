@@ -347,6 +347,62 @@ const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
           scroll-behavior: auto !important;
         }
       }
+
+    /* booking tabs */
+    .booking-tabs {
+      display: flex;
+      gap: 24px;
+      margin: 28px 0 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .booking-tab {
+      appearance: none;
+      border: 0;
+      border-bottom: 2px solid transparent;
+      margin: 0 0 -1px;
+      padding: 0 0 10px;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .booking-tab:hover {
+      color: var(--fg);
+    }
+
+    .booking-tab.active {
+      color: var(--fg);
+      border-bottom-color: var(--accent);
+    }
+
+    .booking-tab:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .calendar-frame {
+      position: relative;
+      min-height: 620px;
+    }
+
+    .calendar-frame[hidden] {
+      display: none;
+    }
+
+    .booking-fallback {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 560px) {
+      .calendar-frame {
+        min-height: 580px;
+      }
+    }
     </style>
   </head>
 
